@@ -2,11 +2,11 @@
   hosts: user
   become: yes
   tasks: 
-    - name: configure nodejs module
-      ansible.builtin.shell: |
-        dnf module disable nodejs -y
-        dnf module enable nodejs:20 -y
+    - name: disable nodejs module
+      ansible.builtin.command: dnf module disable nodejs -y 
 
+    - name: enableing nodejs module
+      ansible.builtin.command: nf module enable nodejs:20 -y
 
     - name: install nodejs
       ansible.builtin.dnf:
@@ -53,5 +53,5 @@
     - name: user component enable and start
       ansible.builtin.service:
         name: user
-        enable: yes
+        enabled: yes
         state: started
